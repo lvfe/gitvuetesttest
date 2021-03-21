@@ -36,7 +36,6 @@ var extraTab = function(cb) {
             }
             return true;
         };
-        console.log('name', name);
         exec('git diff HEAD --name-only --diff-filter=ACMR -- '+name+'', function(error, stdout, stderr) {// 通过node子进程执行命令
             // console.log('stdout', stdout);
             // console.log('------------------------');
