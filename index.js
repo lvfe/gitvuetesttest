@@ -11,5 +11,5 @@ function defineReactive(obj, key, value){
         }
     })
 }
-obj = {'a': 1};
+const obj = {'a': 1};
 defineReactive(obj, 'a', 2);

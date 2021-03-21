@@ -83,12 +83,11 @@ function install(_Vue) {
   Vue.mixin({
     // 尽早执行
     beforeCreate() {
-      if (this.$options.store) {
+       if (this.$options.store) {
         Vue.prototype.$store = this.$options.store
       }
     }
   })
 }
 
-// 导出一个对象，作为Vuex
 export default { Store, install }
