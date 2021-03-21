@@ -76,18 +76,27 @@ var missingReadMe = function(cb){
 const deepmoreif4 = function(cb){
     var conf = JSON.parse(fs.readFileSync('./.check', 'utf8'));
     var name = conf.dir.join(' ');
+    var getMaxDep = function(text){
+        
+        
+        return 2;
+    }
     exec('git diff HEAD --name-only --diff-filter=ACMR -- '+name+'', function(error, stdout, stderr) {// 通过node子进程执行命令
-        console.log('stdout', stdout);
-        console.log('------------------------');
         if(stdout) {
             array = stdout.split('\n');//通过切割换行，拿到文件列表
             array.pop();// 去掉最后一个换行符号
             array.forEach(function(value) {
                 text = fs.readFileSync(value, 'utf-8');// 拿到文件内容
                 console.log('====+++++++++++++++++++++++======');
-                console.log('texxt', text);
-                console.log('===++++++++++++++++++++++++======');
-                
+                console.log('texxt', text.replace(/\s/g, ''));
+                let textTrimed = text.replace(/\s/g, '')
+                if(getMaxDep(textTrimed)>4){
+                    console.log('===++++++++++++++++++++++++======');
+                    console.log('\x1B[31m%s',errTip[Math.floor(errTip.length*Math.random())]);
+                    console.log('\x1B[31m%s', 'More than 4 if ');//输出
+                    cb(1)
+                    return;
+                }
             });
             cb(0);
         }else {

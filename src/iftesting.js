@@ -5,7 +5,6 @@ const onlyforTesting = (args) => {
                 if(args<6){
                     if(args<8){
                         console.log('hit it!');
-                        console.log('hit it!');
                     }
                 }
             }
