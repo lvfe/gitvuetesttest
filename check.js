@@ -59,8 +59,23 @@ var extraTab = function(cb) {
             }
         });
 };
+var missingReadMe = function(cb){
+    exec('ls', function(error, stdout, stderr) {// 通过node子进程执行命令，
+        const files = stdout.toLowerCase().split('\n');
+        let f = false;
+        if(files.indexOf('readme.md')!==-1) {
+            f= true;
+        }
+        if(f) cb(0);
+        else {
+            console.log('\x1B[31m%s',errTip[Math.floor(errTip.length*Math.random())]);
+            console.log('\x1B[31m%s', 'missing readme.md');//输出
+            cb(1);
+        }
+    });
+}
 
-var taskList = [extraTab, lint];
+var taskList = [extraTab, lint, missingReadMe];
 // 执行检查
 var task = function() {
     if(!taskList.length) {
