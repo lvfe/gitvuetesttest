@@ -73,8 +73,30 @@ var missingReadMe = function(cb){
         }
     });
 }
+const deepmoreif4 = function(cb){
+    var conf = JSON.parse(fs.readFileSync('./.check', 'utf8'));
+    var name = conf.dir.join(' ');
+    exec('git diff HEAD --name-only --diff-filter=ACMR -- '+name+'', function(error, stdout, stderr) {// 通过node子进程执行命令
+        console.log('stdout', stdout);
+        console.log('------------------------');
+        if(stdout) {
+            array = stdout.split('\n');//通过切割换行，拿到文件列表
+            array.pop();// 去掉最后一个换行符号
+            array.forEach(function(value) {
+                text = fs.readFileSync(value, 'utf-8');// 拿到文件内容
+                console.log('====+++++++++++++++++++++++======');
+                console.log('texxt', text);
+                console.log('===++++++++++++++++++++++++======');
+                
+            });
+            cb(0);
+        }else {
+            cb(0);
+        }
+    });
+}
 
-var taskList = [extraTab, lint, missingReadMe];
+var taskList = [extraTab, lint, missingReadMe, deepmoreif4];
 // 执行检查
 var task = function() {
     if(!taskList.length) {
