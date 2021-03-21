@@ -29,6 +29,7 @@ export default {
   },
   async created(){
     console.log("create", this.$el)
+    const a=0;
     
     const result = await getCources();
     this.courses = result;

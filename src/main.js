@@ -16,7 +16,7 @@ Vue.prototype.$bus = new Vue()
 
 Vue.prototype.$notice = function(props) {
   return create(Notice, props)
-}
+};
 
 // new Vue是根实例
 // App是根组件
