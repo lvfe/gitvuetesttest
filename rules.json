@@ -1,0 +1,12 @@
+{
+    "flink":{
+        "name": {
+            "build.gradle": "flink"
+        },
+        "rules": [
+            {"deploy\\COB.params": "deploy_with_start=false"},
+            {"Jenkinsfile":"gsp\\(acq\\)"},
+            {"gradle.properties": ["1.9.2","1.11.2"]}
+        ]
+    }
+}
